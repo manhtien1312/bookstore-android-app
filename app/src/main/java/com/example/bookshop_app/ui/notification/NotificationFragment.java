@@ -1,4 +1,4 @@
-package com.example.bookshop_app.fragments.notification;
+package com.example.bookshop_app.ui.notification;
 
 import android.os.Bundle;
 

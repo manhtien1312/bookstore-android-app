@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.auth.SignUpFragment"
+    tools:context=".ui.auth.SignUpFragment"
     android:background="@color/background_white">
 
     <androidx.cardview.widget.CardView
@@ -12,7 +12,7 @@
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:cardCornerRadius="22dp"
@@ -29,7 +29,7 @@
     <LinearLayout
         android:layout_width="290dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="90dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -59,7 +59,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="335dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="242dp"
+        android:layout_marginTop="200dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -214,7 +214,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="335dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="690dp"
+        android:layout_marginTop="630dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -247,7 +247,7 @@
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="770dp"
+        android:layout_marginTop="700dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

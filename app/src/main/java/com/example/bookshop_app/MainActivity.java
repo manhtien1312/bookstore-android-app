@@ -9,6 +9,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.bookshop_app.databinding.ActivityMainBinding;
+import com.example.bookshop_app.utils.JwtManager;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,7 +35,15 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
                 if(itemId == R.id.nav_account){
-                    navController.navigate(R.id.profileFragment);
+                    if(JwtManager.getToken(getApplicationContext()) != null){
+                        navController.navigate(R.id.profileFragment);
+                    } else {
+                        navController.navigate(R.id.signInFragment);
+                    }
+                    return true;
+                }
+                if(itemId == R.id.nav_recommend){
+                    navController.navigate(R.id.recommendFragment);
                     return true;
                 }
                 if(itemId == R.id.nav_notification){

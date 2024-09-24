@@ -1,4 +1,4 @@
-package com.example.bookshop_app.fragments.auth;
+package com.example.bookshop_app.ui.auth;
 
 import android.graphics.Typeface;
 import android.os.Bundle;

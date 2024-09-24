@@ -10,6 +10,10 @@
         android:id="@+id/nav_account"
         android:icon="@drawable/user"/>
 
+    <item android:title="Gợi ý"
+        android:id="@+id/nav_recommend"
+        android:icon="@drawable/recommend"/>
+
     <item android:title="Thông báo"
         android:id="@+id/nav_notification"
         android:icon="@drawable/notification"/>

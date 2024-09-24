@@ -1,4 +1,4 @@
-package com.example.bookshop_app.fragments.home;
+package com.example.bookshop_app.ui.home;
 
 import android.os.Bundle;
 
