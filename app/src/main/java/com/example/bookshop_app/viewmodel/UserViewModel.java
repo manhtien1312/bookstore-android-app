@@ -16,8 +16,8 @@ public class UserViewModel extends ViewModel {
     private UserRepository userRepository;
     private MutableLiveData<User> _user = new MutableLiveData<>();
 
-    public UserViewModel(Context context){
-        userRepository = new UserRepository(context);
+    public UserViewModel(){
+        userRepository = new UserRepository();
     }
 
     public void getUserInformation(){

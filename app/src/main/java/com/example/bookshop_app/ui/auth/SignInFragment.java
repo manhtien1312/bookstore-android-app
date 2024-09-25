@@ -95,9 +95,11 @@ public class SignInFragment extends Fragment {
                 binding.loading.setVisibility(View.INVISIBLE);
                 if(res.equals("Failure")){
                     Toast.makeText(requireContext(), "Thông tin đăng nhập không chính xác!", Toast.LENGTH_LONG).show();
-                } else if(res.equals("Server Error")) {
+                }
+                else if(res.equals("Server Error")) {
                     Toast.makeText(requireContext(), "Lỗi Server. Vui lòng thử lại sau!", Toast.LENGTH_LONG).show();
-                } else {
+                }
+                else {
                     JwtManager.saveToken(requireContext(), res);
                     navController.navigate(R.id.profileFragment);
                 }
@@ -110,7 +112,8 @@ public class SignInFragment extends Fragment {
                 String email = binding.txtEmail.getText().toString();
                 String password = binding.txtPassword.getText().toString();
                 SignInRequest request = new SignInRequest(email, password);
-                viewModel.signIn(request);            }
+                viewModel.signIn(request);
+            }
         });
 
     }

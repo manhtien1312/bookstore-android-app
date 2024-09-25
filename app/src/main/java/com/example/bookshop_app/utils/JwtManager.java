@@ -9,8 +9,6 @@ public class JwtManager {
     public static final String KEY_JWT_TOKEN = "jwt_token";
     public static String CURRENT_TOKEN;
 
-    // Vấn đề: Làm sao để lấy được token ở RetrofitClient mà không cần gọi hàm get
-
     public static void saveToken(Context context, String token){
         CURRENT_TOKEN = token;
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
@@ -21,7 +19,9 @@ public class JwtManager {
 
     public static String getToken(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(KEY_JWT_TOKEN, null);
+        String token = sharedPreferences.getString(KEY_JWT_TOKEN, null);
+        CURRENT_TOKEN = token;
+        return token;
     }
 
     public static void removeToken(Context context){

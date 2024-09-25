@@ -24,14 +24,14 @@ public class RetrofitClient {
                 .build();
     }
 
-    public static Retrofit retrofitWithToken(Context context){
+    public static Retrofit retrofitWithToken(){
         Interceptor interceptor = new Interceptor() {
             @NonNull
             @Override
             public Response intercept(@NonNull Chain chain) throws IOException {
                 Request request = chain.request();
                 Request.Builder builder = request.newBuilder();
-                builder.addHeader("Authorization", "Bearer " + JwtManager.getToken(context));
+                builder.addHeader("Authorization", "Bearer " + JwtManager.CURRENT_TOKEN);
                 return chain.proceed(builder.build());
             }
         };

@@ -21,6 +21,7 @@ import androidx.navigation.Navigation;
 
 import com.example.bookshop_app.R;
 import com.example.bookshop_app.databinding.FragmentProfileBinding;
+import com.example.bookshop_app.model.Address;
 import com.example.bookshop_app.model.User;
 import com.example.bookshop_app.utils.JwtManager;
 import com.example.bookshop_app.viewmodel.UserViewModel;
@@ -46,7 +47,7 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(getLayoutInflater(), container, false);
-        viewModel = new UserViewModel(requireContext());
+        viewModel = new ViewModelProvider(this).get(UserViewModel.class);
         displayUserInformation();
         return binding.getRoot();
     }
@@ -66,6 +67,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void displayUserInformation(){
+        binding.loading.setVisibility(View.VISIBLE);
         viewModel.getUserResponse().observe(getViewLifecycleOwner(), new Observer<User>() {
             @Override
             public void onChanged(User user) {
@@ -74,6 +76,7 @@ public class ProfileFragment extends Fragment {
                 } else {
                     binding.imgUserAvatar.setImageBitmap(decodeImageBase64(user.getAvatarImage()));
                     binding.txtUserName.setText(user.getName());
+                    binding.loading.setVisibility(View.INVISIBLE);
                 }
             }
         });

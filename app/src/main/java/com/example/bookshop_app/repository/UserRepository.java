@@ -16,8 +16,8 @@ public class UserRepository {
 
     private final UserApi userApi;
 
-    public UserRepository(Context context){
-        userApi = RetrofitClient.retrofitWithToken(context).create(UserApi.class);
+    public UserRepository(){
+        userApi = RetrofitClient.retrofitWithToken().create(UserApi.class);
     }
 
     public void getUserInformation(final IUserResponse userResponse){
