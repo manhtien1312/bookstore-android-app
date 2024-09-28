@@ -11,10 +11,10 @@ import retrofit2.http.POST;
 
 public interface AuthApi {
 
-    @POST("/api/v1/auth/register")
+    @POST("api/v1/auth/register")
     Call<MessageResponse> signUp(@Body SignUpRequest request);
 
-    @POST("/api/v1/auth/authenticate")
+    @POST("api/v1/auth/authenticate")
     Call<TokenResponse> signIn(@Body SignInRequest request);
 
 }

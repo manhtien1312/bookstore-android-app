@@ -38,27 +38,28 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="335dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="Địa Chỉ Email"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="5dp"/>
+            android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            app:cardCornerRadius="50dp"
             android:layout_marginBottom="10dp"
+            app:cardCornerRadius="50dp"
             app:cardElevation="0dp">
 
             <EditText
@@ -68,22 +69,22 @@
                 android:background="@color/white"
                 android:hint="Email Của Bạn"
                 android:padding="12dp"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
         </androidx.cardview.widget.CardView>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="Mật Khẩu"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="5dp"/>
+            android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            app:cardCornerRadius="50dp"
             android:layout_marginBottom="10dp"
+            app:cardCornerRadius="50dp"
             app:cardElevation="0dp">
 
             <EditText
@@ -92,39 +93,42 @@
                 android:layout_height="match_parent"
                 android:background="@color/white"
                 android:hint="Nhập Mật Khẩu"
-                android:padding="12dp"
                 android:inputType="textPassword"
-                android:textSize="14sp"/>
+                android:padding="12dp"
+                android:textSize="14sp" />
+
             <ImageView
                 android:id="@+id/btnViewPassword"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/view_password"
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginEnd="15dp"
-                android:visibility="visible"/>
+                android:src="@drawable/view_password"
+                android:visibility="visible" />
+
             <ImageView
                 android:id="@+id/btnHidePassword"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/hide_password"
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginEnd="15dp"
-                android:visibility="invisible"/>
+                android:src="@drawable/hide_password"
+                android:visibility="invisible" />
         </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/btnForgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quên Mật Khẩu?"
             android:layout_gravity="end"
-            android:textStyle="bold"
+            android:text="Quên Mật Khẩu?"
             android:textColor="@color/text_gray"
-            android:textSize="13sp"/>
+            android:textSize="13sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="335dp"
         android:layout_height="138dp"
         android:layout_marginTop="420dp"
@@ -174,15 +178,15 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/google"
-                    android:layout_marginEnd="10dp"/>
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/google" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Đăng Nhập Với Google"
                     android:textColor="@color/text_black"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -191,19 +195,19 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="700dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
             android:text="Chưa Có Tài Khoản?"
             android:textColor="@color/text_gray"
             android:textSize="12sp"
-            android:textStyle="bold"
-            android:layout_marginEnd="5dp"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/btnSignUp"
@@ -212,14 +216,28 @@
             android:text="Đăng Ký Ngay"
             android:textColor="@color/text_black"
             android:textSize="12sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/white"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:itemTextColor="@drawable/bottom_navigation_selector"
+        app:itemActiveIndicatorStyle="@style/BottomNavigationStyle"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_menu"/>
 
     <FrameLayout
         android:id="@+id/loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#40000000"
+        android:background="@color/background_popup"
         android:visibility="invisible">
 
         <ProgressBar

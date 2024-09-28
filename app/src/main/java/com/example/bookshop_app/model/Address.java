@@ -1,6 +1,8 @@
 package com.example.bookshop_app.model;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
 
     private String id;
     private String name;
@@ -88,6 +90,6 @@ public class Address {
 
     @Override
     public String toString() {
-        return name + ", " + phoneNumber + ", " + detailAddress + ", " + ward + ", " + district + ", " + city + ", " + isDefault;
+        return ward + ", " + district + ", " + city;
     }
 }

@@ -1,6 +1,5 @@
 package com.example.bookshop_app.model;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class User {
@@ -9,14 +8,16 @@ public class User {
     private String name;
     private String phoneNumber;
     private String gender;
+    private String email;
     private List<Address> address;
     private String avatarImage;
 
-    public User(String id, String name, String phoneNumber, String gender, List<Address> address, String avatarImage) {
+    public User(String id, String name, String phoneNumber, String gender, String email, List<Address> address, String avatarImage) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
+        this.email = email;
         this.address = address;
         this.avatarImage = avatarImage;
     }
@@ -51,6 +52,14 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public List<Address> getAddress() {

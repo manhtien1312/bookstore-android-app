@@ -45,13 +45,58 @@
         android:label="Thông báo"
         tools:layout="@layout/fragment_notification" />
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.bookshop_app.ui.account.ProfileFragment"
-        android:label="Tài khoản"
-        tools:layout="@layout/fragment_profile" />
-    <fragment
         android:id="@+id/recommendFragment"
         android:name="com.example.bookshop_app.ui.recommend.RecommendFragment"
         android:label="fragment_recommend"
         tools:layout="@layout/fragment_recommend" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.bookshop_app.ui.account.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.example.bookshop_app.ui.account.AccountFragment"
+        android:label="AccountFragment" >
+        <action
+            android:id="@+id/action_accountFragment_to_settingFragment"
+            app:destination="@id/settingFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_accountFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.bookshop_app.ui.account.ProfileFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account">
+        <action
+            android:id="@+id/action_profileFragment_to_addressFragment"
+            app:destination="@id/addressFragment"
+            app:enterAnim="@anim/zoom_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="com.example.bookshop_app.ui.account.AddressFragment"
+        android:label="fragment_address"
+        tools:layout="@layout/fragment_address">
+        <argument
+            android:name="address"
+            app:argType="com.example.bookshop_app.model.Address"
+            app:nullable="true" />
+        <argument
+            android:name="numberOfAddress"
+            app:argType="integer" />
+    </fragment>
 </navigation>

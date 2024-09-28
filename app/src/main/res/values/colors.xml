@@ -6,4 +6,6 @@
     <color name="text_black">#1A2530</color>
     <color name="text_gray">#707B81</color>
     <color name="background_blue">#5B9EE1</color>
+    <color name="red">#D32A05</color>
+    <color name="background_popup">#40000000</color>
 </resources>

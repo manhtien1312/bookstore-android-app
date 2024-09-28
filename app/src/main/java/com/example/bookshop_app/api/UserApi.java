@@ -7,7 +7,7 @@ import retrofit2.http.GET;
 
 public interface UserApi {
 
-    @GET("/api/v1/user/information")
+    @GET("api/v1/user/information")
     Call<User> getUserInformation();
 
 }

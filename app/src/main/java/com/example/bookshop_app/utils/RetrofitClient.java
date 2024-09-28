@@ -15,7 +15,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    public static final String BASE_URL = "http://192.168.1.7:8080";
+    public static final String BASE_URL = "http://192.168.1.7:8080/";
+    public static final String PROVINCE_URL = "https://esgoo.net/api-tinhthanh/";
 
     public static Retrofit retrofit(){
         return new Retrofit.Builder()
@@ -43,6 +44,13 @@ public class RetrofitClient {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client.build())
+                .build();
+    }
+
+    public static Retrofit retrofitProvince(){
+        return new Retrofit.Builder()
+                .baseUrl(PROVINCE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
 

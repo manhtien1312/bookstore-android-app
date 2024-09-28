@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape
+            android:shape="rectangle"
+            android:useLevel="false">
+            <size
+                android:width="40dp"
+                android:height="40dp"/>
+        </shape>
+    </item>
+
+    <item
+        android:top="13dp"
+        android:left="13dp"
+        android:width="14dp"
+        android:height="14dp"
+        android:drawable="@drawable/magnifying_glass"/>
+
+</layer-list>

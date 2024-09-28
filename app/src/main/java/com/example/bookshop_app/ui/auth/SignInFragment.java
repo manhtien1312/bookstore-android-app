@@ -13,6 +13,7 @@ import androidx.navigation.Navigation;
 
 import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import com.example.bookshop_app.databinding.FragmentSignInBinding;
 import com.example.bookshop_app.payload.request.SignInRequest;
 import com.example.bookshop_app.utils.JwtManager;
 import com.example.bookshop_app.viewmodel.AuthViewModel;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class SignInFragment extends Fragment {
 
@@ -101,7 +103,7 @@ public class SignInFragment extends Fragment {
                 }
                 else {
                     JwtManager.saveToken(requireContext(), res);
-                    navController.navigate(R.id.profileFragment);
+                    navController.navigate(R.id.accountFragment);
                 }
             }
         });
@@ -113,6 +115,31 @@ public class SignInFragment extends Fragment {
                 String password = binding.txtPassword.getText().toString();
                 SignInRequest request = new SignInRequest(email, password);
                 viewModel.signIn(request);
+            }
+        });
+
+        binding.bottomNavigationView.setSelectedItemId(R.id.nav_account);
+        binding.bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+                if(itemId == R.id.nav_home){
+                    navController.navigate(R.id.homeFragment);
+                    return true;
+                }
+                if(itemId == R.id.nav_recommend){
+                    navController.navigate(R.id.recommendFragment);
+                    return true;
+                }
+                if(itemId == R.id.nav_notification){
+                    navController.navigate(R.id.notificationFragment);
+                    return true;
+                }
+                if(itemId == R.id.nav_cart){
+                    navController.navigate(R.id.cartFragment);
+                    return true;
+                }
+                return false;
             }
         });
 
