@@ -49,6 +49,21 @@ public class AddressRepository {
         });
     }
 
+    public void deleteAddress(String addressId, final IAddressResponse addressResponse){
+        Call<MessageResponse> res = addressApi.deleteAddress(addressId);
+        res.enqueue(new Callback<MessageResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<MessageResponse> call, @NonNull Response<MessageResponse> response) {
+                addressResponse.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<MessageResponse> call, @NonNull Throwable t) {
+                addressResponse.onError(t.getMessage());
+            }
+        });
+    }
+
     public interface IAddressResponse{
         void onSuccess(MessageResponse response);
         void onError(String message);

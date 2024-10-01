@@ -1,5 +1,6 @@
 package com.example.bookshop_app.ui.cart;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,21 +8,29 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.bookshop_app.R;
+import com.example.bookshop_app.adapter.CartAdapter;
 import com.example.bookshop_app.databinding.FragmentCartBinding;
+import com.example.bookshop_app.model.Book;
 import com.example.bookshop_app.utils.JwtManager;
 import com.google.android.material.navigation.NavigationBarView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CartFragment extends Fragment {
 
     private FragmentCartBinding binding;
     private NavController navController;
+    private List<Book> booksInCart;
 
     public CartFragment() {
     }
@@ -36,6 +45,7 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentCartBinding.inflate(getLayoutInflater(), container, false);
+        displayCart();
         return binding.getRoot();
     }
 
@@ -71,6 +81,51 @@ public class CartFragment extends Fragment {
                     return true;
                 }
                 return false;
+            }
+        });
+    }
+
+    private void displayCart(){
+        booksInCart = new ArrayList<>();
+        booksInCart.add(new Book("1", "Kính Vạn Hoa Chết Chóc - Tập 2 (Tái Bản 2023)", null, null, 120000, 0, null, null));
+        booksInCart.add(new Book("1", "Kính Vạn Hoa Chết Chóc - Tập 2 (Tái Bản 2023)", null, null, 120000, 0, null, null));
+        booksInCart.add(new Book("1", "Kính Vạn Hoa Chết Chóc - Tập 2 (Tái Bản 2023)", null, null, 120000, 0, null, null));
+        booksInCart.add(new Book("1", "Kính Vạn Hoa Chết Chóc - Tập 2 (Tái Bản 2023)", null, null, 120000, 0, null, null));
+        booksInCart.add(new Book("1", "Kính Vạn Hoa Chết Chóc - Tập 2 (Tái Bản 2023)", null, null, 120000, 0, null, null));
+        booksInCart.add(new Book("1", "Kính Vạn Hoa Chết Chóc - Tập 2 (Tái Bản 2023)", null, null, 120000, 0, null, null));
+        booksInCart.add(new Book("1", "Kính Vạn Hoa Chết Chóc - Tập 2 (Tái Bản 2023)", null, null, 120000, 0, null, null));
+        booksInCart.add(new Book("1", "Kính Vạn Hoa Chết Chóc - Tập 2 (Tái Bản 2023)", null, null, 120000, 0, null, null));
+        booksInCart.add(new Book("1", "Kính Vạn Hoa Chết Chóc - Tập 2 (Tái Bản 2023)", null, null, 120000, 0, null, null));
+        booksInCart.add(new Book("1", "Kính Vạn Hoa Chết Chóc - Tập 2 (Tái Bản 2023)", null, null, 120000, 0, null, null));
+        booksInCart.add(new Book("1", "Kính Vạn Hoa Chết Chóc - Tập 2 (Tái Bản 2023)", null, null, 120000, 0, null, null));
+        booksInCart.add(new Book("1", "Kính Vạn Hoa Chết Chóc - Tập 2 (Tái Bản 2023)", null, null, 120000, 0, null, null));
+
+        CartAdapter adapter = new CartAdapter(booksInCart);
+        binding.listCart.setAdapter(adapter);
+        binding.listCart.setLayoutManager(new GridLayoutManager(requireContext(), 1));
+
+        adapter.setOnClickListener(new CartAdapter.OnClickListener() {
+            @Override
+            public void handleBookClicked(int index) {
+                Toast.makeText(requireContext(), "Redirected to BookDetail Fragment", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void handleDeleteClicked(int index) {
+                // gọi api xóa item cart và re-displayCart()
+            }
+
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void handleSelectBook(int index, boolean isSelected) {
+                int total = Integer.parseInt(binding.txtTotalPrice.getText().toString());
+                if(isSelected){
+                    total += booksInCart.get(index).getPrice();
+                }
+                else {
+                    total -= booksInCart.get(index).getPrice();
+                }
+                binding.txtTotalPrice.setText(Integer.toString(total));
             }
         });
     }

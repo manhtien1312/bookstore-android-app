@@ -148,10 +148,36 @@ public class AddressFragment extends Fragment {
             }
         });
 
-        binding.btnCancel.setOnClickListener(new View.OnClickListener() {
+        binding.btnCancelSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 binding.popupSelectProvince.setVisibility(View.GONE);
+            }
+        });
+
+        binding.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(address.getIsDefault() == 1){
+                    Toast.makeText(requireContext(), "Bạn khộng thể xóa địa chỉ mặc định. Vui lòng thêm hoặc thay đổi địa chỉ mặc định khác!", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    binding.popupDelete.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        binding.btnCancelDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.popupDelete.setVisibility(View.GONE);
+            }
+        });
+
+        binding.btnConfirmDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteAddress(address.getId());
             }
         });
 
@@ -190,6 +216,7 @@ public class AddressFragment extends Fragment {
 
         if(address == null){
             binding.txtHeader.setText("Thêm địa chỉ mới");
+            binding.btnDelete.setVisibility(View.GONE);
         } else {
             binding.txtAddressName.setText(address.getName());
             binding.txtAddressPhoneNumber.setText(address.getPhoneNumber());
@@ -207,26 +234,21 @@ public class AddressFragment extends Fragment {
     }
 
     private void addAddress(Address address){
-        viewModel.getAddressResponse().observe(getViewLifecycleOwner(), new Observer<MessageResponse>() {
-            @Override
-            public void onChanged(MessageResponse messageResponse) {
-                Toast.makeText(requireContext(), messageResponse.getMessage(), Toast.LENGTH_LONG).show();
-                Bundle result = new Bundle();
-                result.putBoolean("isSuccess", true);
-                getParentFragmentManager().setFragmentResult("changeAddress", result);
-                getParentFragmentManager().popBackStack();
-            }
-        });
-        viewModel.getErrorResponse().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String errorStr) {
-                Toast.makeText(requireContext(), errorStr, Toast.LENGTH_LONG).show();
-            }
-        });
+        displayResponse();
         viewModel.addAddress(address);
     }
 
     private void updateAddress(Address address){
+        displayResponse();
+        viewModel.updateAddress(address);
+    }
+
+    private void deleteAddress(String addressId){
+        displayResponse();
+        viewModel.deleteAddress(addressId);
+    }
+
+    private void displayResponse(){
         viewModel.getAddressResponse().observe(getViewLifecycleOwner(), new Observer<MessageResponse>() {
             @Override
             public void onChanged(MessageResponse messageResponse) {
@@ -243,7 +265,6 @@ public class AddressFragment extends Fragment {
                 Toast.makeText(requireContext(), errorStr, Toast.LENGTH_LONG).show();
             }
         });
-        viewModel.updateAddress(address);
     }
 
 }

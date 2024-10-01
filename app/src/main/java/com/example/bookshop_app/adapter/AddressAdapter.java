@@ -26,7 +26,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
     @NonNull
     @Override
     public AddressViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.address_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_address, parent, false);
         return new AddressViewHolder(view);
     }
 

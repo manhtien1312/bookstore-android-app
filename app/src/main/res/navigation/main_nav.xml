@@ -83,8 +83,7 @@
             app:destination="@id/addressFragment"
             app:enterAnim="@anim/zoom_in"
             app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:popExitAnim="@anim/zoom_out" />
     </fragment>
     <fragment
         android:id="@+id/addressFragment"

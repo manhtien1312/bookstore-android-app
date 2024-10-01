@@ -126,6 +126,7 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:text="Thay đổi"
+                    android:visibility="invisible"
                     android:textColor="@color/background_blue" />
             </LinearLayout>
 
@@ -264,6 +265,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btnSaveChange"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"

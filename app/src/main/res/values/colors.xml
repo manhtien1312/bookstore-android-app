@@ -7,5 +7,6 @@
     <color name="text_gray">#707B81</color>
     <color name="background_blue">#5B9EE1</color>
     <color name="red">#D32A05</color>
+    <color name="orange">#ED6F53</color>
     <color name="background_popup">#40000000</color>
 </resources>

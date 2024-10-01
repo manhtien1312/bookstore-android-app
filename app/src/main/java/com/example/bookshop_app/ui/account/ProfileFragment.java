@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +23,7 @@ import com.example.bookshop_app.adapter.AddressAdapter;
 import com.example.bookshop_app.databinding.FragmentProfileBinding;
 import com.example.bookshop_app.model.Address;
 import com.example.bookshop_app.model.User;
+import com.example.bookshop_app.payload.response.MessageResponse;
 import com.example.bookshop_app.viewmodel.UserViewModel;
 
 import java.util.ArrayList;
@@ -81,14 +84,14 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        binding.btnEditEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.txtEmail.setEnabled(true);
-                binding.txtEmail.requestFocus();
-                binding.txtEmail.setSelection(binding.txtEmail.length());
-            }
-        });
+//        binding.btnEditEmail.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                binding.txtEmail.setEnabled(true);
+//                binding.txtEmail.requestFocus();
+//                binding.txtEmail.setSelection(binding.txtEmail.length());
+//            }
+//        });
 
         binding.btnEditPhoneNumber.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +108,19 @@ public class ProfileFragment extends Fragment {
                 ProfileFragmentDirections.ActionProfileFragmentToAddressFragment action =
                         ProfileFragmentDirections.actionProfileFragmentToAddressFragment(null, addresses.size());
                 navController.navigate(action);
+            }
+        });
+
+        binding.btnSaveChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = binding.txtName.getText().toString().trim();
+                String phoneNumber = binding.txtPhoneNumber.getText().toString().trim();
+                RadioButton button = view.findViewById(binding.radioSelectGender.getCheckedRadioButtonId());
+                String gender = button.getText().toString().trim();
+
+                User user = new User(null, name, phoneNumber, gender, null, null, null);
+                updateUserInformation(user);
             }
         });
 
@@ -139,5 +155,24 @@ public class ProfileFragment extends Fragment {
             }
         });
         viewModel.getUserInformation();
+    }
+
+    private void updateUserInformation(User user){
+        viewModel.getMessageResponse().observe(getViewLifecycleOwner(), new Observer<MessageResponse>() {
+            @Override
+            public void onChanged(MessageResponse messageResponse) {
+                binding.txtName.setEnabled(false);
+                binding.txtPhoneNumber.setEnabled(false);
+                binding.txtEmail.setEnabled(false);
+                Toast.makeText(requireContext(), messageResponse.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        viewModel.getErrorResponse().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String errorStr) {
+                Toast.makeText(requireContext(), errorStr, Toast.LENGTH_LONG).show();
+            }
+        });
+        viewModel.updateUser(user);
     }
 }

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.bookshop_app.api.UserApi;
 import com.example.bookshop_app.model.User;
+import com.example.bookshop_app.payload.response.MessageResponse;
 import com.example.bookshop_app.utils.RetrofitClient;
 
 import retrofit2.Call;
@@ -25,7 +26,7 @@ public class UserRepository {
         res.enqueue(new Callback<User>() {
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
-                userResponse.onSuccess(response.body());
+                userResponse.onSuccess(response.body(), null);
             }
 
             @Override
@@ -35,8 +36,23 @@ public class UserRepository {
         });
     }
 
+    public void updateUser(User user, final IUserResponse userResponse){
+        Call<MessageResponse> res = userApi.updateUser(user);
+        res.enqueue(new Callback<MessageResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<MessageResponse> call, @NonNull Response<MessageResponse> response) {
+                userResponse.onSuccess(null, response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<MessageResponse> call, @NonNull Throwable t) {
+                userResponse.onError(t.getMessage());
+            }
+        });
+    }
+
     public interface IUserResponse {
-        void onSuccess(User user);
+        void onSuccess(User user, MessageResponse message);
         void onError(String message);
     }
 

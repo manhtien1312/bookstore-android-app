@@ -92,6 +92,20 @@ public class AddressViewModel extends ViewModel {
         });
     }
 
+    public void deleteAddress(String addressId){
+        addressRepository.deleteAddress(addressId, new AddressRepository.IAddressResponse() {
+            @Override
+            public void onSuccess(MessageResponse response) {
+                _addressResponse.setValue(response);
+            }
+
+            @Override
+            public void onError(String message) {
+                _errorMessage.setValue(message);
+            }
+        });
+    }
+
     public LiveData<ProvinceResponse> getProvinceResponse(){
         return _provinceResponse;
     }

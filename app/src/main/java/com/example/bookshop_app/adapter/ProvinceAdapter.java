@@ -27,7 +27,7 @@ public class ProvinceAdapter extends RecyclerView.Adapter<ProvinceAdapter.Provin
     @NonNull
     @Override
     public ProvinceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.province_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_province, parent, false);
         return new ProvinceViewHolder(view);
     }
 
