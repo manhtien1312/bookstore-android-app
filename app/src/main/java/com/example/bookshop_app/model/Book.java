@@ -10,10 +10,10 @@ public class Book {
     private String description;
     private int price;
     private int inventory;
-    private List<String> categories;
+    private List<Category> categories;
     private String image;
 
-    public Book(String id, String title, String author, String description, int price, int inventory, List<String> categories, String image) {
+    public Book(String id, String title, String author, String description, int price, int inventory, List<Category> categories, String image) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -72,11 +72,11 @@ public class Book {
         this.inventory = inventory;
     }
 
-    public List<String> getCategories() {
+    public List<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<String> categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
 

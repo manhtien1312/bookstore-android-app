@@ -1,6 +1,9 @@
 package com.example.bookshop_app.adapter;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +18,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshop_app.R;
 import com.example.bookshop_app.model.Book;
+import com.example.bookshop_app.model.Cart;
 
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
-    private List<Book> books;
+    private List<Cart> cart;
     private OnClickListener onClickListener;
 
-    public CartAdapter(List<Book> books) {
-        this.books = books;
+    public CartAdapter(List<Cart> cart) {
+        this.cart = cart;
     }
 
     @NonNull
@@ -37,10 +41,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        Book book = books.get(position);
+        Cart cartItem = cart.get(position);
+        Book book = cartItem.getBook();
+
+        holder.imgBookCover.setImageBitmap(decodeImageBase64(book.getImage()));
         holder.txtBookTitle.setText(book.getTitle());
         holder.txtBookPrice.setText(Integer.toString(book.getPrice()));
-        holder.txtQuantity.setText("2");
+        holder.txtQuantity.setText(Integer.toString(cartItem.getQuantity()));
         holder.btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,11 +92,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     @Override
     public int getItemCount() {
-        return books.size();
+        return cart.size();
     }
 
     public void setOnClickListener(OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
+    }
+
+    private Bitmap decodeImageBase64(String imageStr){
+        byte[] decodedImg = Base64.decode(imageStr, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedImg, 0, decodedImg.length);
     }
 
     class CartViewHolder extends RecyclerView.ViewHolder{
