@@ -22,7 +22,6 @@
             android:id="@+id/imgCover"
             android:layout_width="75dp"
             android:layout_height="120dp"
-            android:src="@drawable/b_a_tr_c_neu_co_nguoi_yeu_em_thich_bebooks__11"
             tools:ignore="ContentDescription"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"/>

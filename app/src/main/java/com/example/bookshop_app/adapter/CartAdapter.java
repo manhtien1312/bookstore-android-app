@@ -1,6 +1,7 @@
 package com.example.bookshop_app.adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.bookshop_app.R;
 import com.example.bookshop_app.model.Book;
 import com.example.bookshop_app.model.Cart;
@@ -24,11 +26,13 @@ import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
+    private Context context;
     private List<Cart> cart;
     private OnClickListener onClickListener;
 
-    public CartAdapter(List<Cart> cart) {
+    public CartAdapter(Context context, List<Cart> cart) {
         this.cart = cart;
+        this.context = context;
     }
 
     @NonNull
@@ -44,7 +48,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         Cart cartItem = cart.get(position);
         Book book = cartItem.getBook();
 
-        holder.imgBookCover.setImageBitmap(decodeImageBase64(book.getImage()));
+        Glide.with(context).load(book.getImageUrl()).into(holder.imgBookCover);
+
         holder.txtBookTitle.setText(book.getTitle());
         holder.txtBookPrice.setText(Integer.toString(book.getPrice()));
         holder.txtQuantity.setText(Integer.toString(cartItem.getQuantity()));
@@ -97,11 +102,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     public void setOnClickListener(OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
-    }
-
-    private Bitmap decodeImageBase64(String imageStr){
-        byte[] decodedImg = Base64.decode(imageStr, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(decodedImg, 0, decodedImg.length);
     }
 
     class CartViewHolder extends RecyclerView.ViewHolder{

@@ -112,7 +112,7 @@ public class CartFragment extends Fragment {
                 }
                 else {
                     itemCart = carts;
-                    adapter = new CartAdapter(itemCart);
+                    adapter = new CartAdapter(requireContext(), itemCart);
                     binding.listCart.setAdapter(adapter);
                     binding.listCart.setLayoutManager(new GridLayoutManager(requireContext(), 1));
 

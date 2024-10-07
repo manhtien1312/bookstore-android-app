@@ -11,9 +11,9 @@ public class Book {
     private int price;
     private int inventory;
     private List<Category> categories;
-    private String image;
+    private String imageUrl;
 
-    public Book(String id, String title, String author, String description, int price, int inventory, List<Category> categories, String image) {
+    public Book(String id, String title, String author, String description, int price, int inventory, List<Category> categories, String imageUrl) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -21,7 +21,7 @@ public class Book {
         this.price = price;
         this.inventory = inventory;
         this.categories = categories;
-        this.image = image;
+        this.imageUrl = imageUrl;
     }
 
     public String getId() {
@@ -80,11 +80,11 @@ public class Book {
         this.categories = categories;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
